@@ -1,16 +1,380 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Information</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: fit-content;
+            min-height:fit-content; /* 각 행의 최소 높이 설정 */
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: white;
+            /* 홀수 행 배경색 */
+        }
+
+        tr:nth-child(odd) {
+            background-color: #e6e6e6;
+            /* 짝수 행 배경색을 진한 회색으로 설정 */
+        }
+
+        @media print {
+            @page {
+                size: A4 portrait;
+                /* 용지 사이즈를 A4로 지정 */
+                margin: 0.5cm;
+                /* 여백 설정 */
+            }
+
+            body {
+                margin: 0;
+                /* body의 여백 제거 */
+            }
+
+            table {
+                max-width: 100%;
+                font-size: 70%;
+                /* 표 내용을 70% 축소 */
+            }
+        }
+    </style>
+</head>
+
 <body>
 
-<h1>lpu23x root page</h1>
+    <h1>lpu23x root page</h1>
 
-<p>information</p>
-<a href="https://github.com/elpusk/web.lpu23x/wiki"> lpu23x Wiki page </a>
-<br>
-<a href="https://github.com/elpusk/public.lpu237.firmware"> lpu23x firmware page </a>
-<br>
-<a href="https://github.com/elpusk/public.lpu237.software"> lpu23x software page </a>
-<br>
-    
+    <p>information</p>
+    <a href="https://github.com/elpusk/web.lpu23x/wiki"> lpu23x Wiki page
+    </a>
+    <br>
+    <a href="https://github.com/elpusk/public.lpu237.firmware"> lpu23x
+        firmware page </a>
+    <br>
+    <a href="https://github.com/elpusk/public.lpu237.software"> lpu23x
+        software page </a>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <th>순번</th>
+            <th>타입</th>
+            <th>디코더</th>
+            <th>마이컴</th>
+            <th>헤드연결</th>
+            <th>uart level</th>
+            <th>usb연결</th>
+            <th>상태</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>c</td>
+            <td>magtek</td>
+            <td>LPU1343</td>
+            <td>일반 케이블</td>
+            <td>무</td>
+            <td>일반커넥터</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td></td>
+            <td>wiznova</td>
+            <td></td>
+            <td>일반 케이블</td>
+            <td>무</td>
+            <td>일반커넥터</td>
+            <td>단종</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td></td>
+            <td>mag&wiz</td>
+            <td></td>
+            <td>일반 케이블</td>
+            <td>무</td>
+            <td>일반커넥터</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td></td>
+            <td>mh1902t</td>
+            <td>MH1902T</td>
+            <td>일반 케이블</td>
+            <td>무</td>
+            <td>일반커넥터</td>
+            <td>개발</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>d</td>
+            <td>magtek</td>
+            <td></td>
+            <td>일반 케이블</td>
+            <td>5v</td>
+            <td>일반커넥터</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td></td>
+            <td>wiznova</td>
+            <td></td>
+            <td>일반 케이블</td>
+            <td>5v</td>
+            <td>일반커넥터</td>
+            <td>단종</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td></td>
+            <td>mag&wiz</td>
+            <td></td>
+            <td>일반 케이블</td>
+            <td>5v</td>
+            <td>일반커넥터</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td></td>
+            <td>mh1902t</td>
+            <td>MH1902T</td>
+            <td>일반 케이블</td>
+            <td>5v</td>
+            <td>일반커넥터</td>
+            <td>개발</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>e</td>
+            <td>magtek</td>
+            <td></td>
+            <td>일반 케이블</td>
+            <td>5v</td>
+            <td>일반커넥터</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td></td>
+            <td>wiznova</td>
+            <td></td>
+            <td>일반 케이블</td>
+            <td>5v</td>
+            <td>일반커넥터</td>
+            <td>단종</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td></td>
+            <td>mag&wiz</td>
+            <td></td>
+            <td>일반 케이블</td>
+            <td>5v</td>
+            <td>일반커넥터</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td></td>
+            <td>mh1902t</td>
+            <td>MH1902T</td>
+            <td>일반 케이블</td>
+            <td>5v</td>
+            <td>일반커넥터</td>
+            <td>개발</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>f00n</td>
+            <td>무</td>
+            <td>LPU1343</td>
+            <td>무</td>
+            <td>5v</td>
+            <td>일반커넥터</td>
+            <td>pp 후 생산된 적 없음</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td></td>
+            <td>무</td>
+            <td>MH1902T</td>
+            <td></td>
+            <td></td>
+            <td>일반커넥터</td>
+            <td>개발</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td>f00nu</td>
+            <td>무</td>
+            <td>LPU1343</td>
+            <td>무</td>
+            <td>무</td>
+            <td>일반커넥터</td>
+            <td>pp 후 생산된 적 없음</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td></td>
+            <td>무</td>
+            <td>MH1902T</td>
+            <td></td>
+            <td></td>
+            <td>일반커넥터</td>
+            <td>개발</td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td>m001-d</td>
+            <td>magtek</td>
+            <td></td>
+            <td>직접납땜</td>
+            <td>무</td>
+            <td>일반커넥터</td>
+            <td>단종</td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td></td>
+            <td>wiznova</td>
+            <td></td>
+            <td>직접납땜</td>
+            <td>무</td>
+            <td>일반커넥터</td>
+            <td>양산</td>
+        </tr>
+        <tr>
+            <td>19</td>
+            <td></td>
+            <td>mh1902t</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td>m001-e-fpc</td>
+            <td>wiznova</td>
+            <td></td>
+            <td>직접납땜</td>
+            <td>무</td>
+            <td>FPC커넥터</td>
+            <td>양산</td>
+        </tr>
+        <tr>
+            <td>21</td>
+            <td></td>
+            <td>mh1902t</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td>m003-b</td>
+            <td>magtek</td>
+            <td></td>
+            <td>FPC1 케이블</td>
+            <td>5v</td>
+            <td>포고핀</td>
+            <td>pp 후 생산된 적 없음</td>
+        </tr>
+        <tr>
+            <td>23</td>
+            <td>m003-d</td>
+            <td>wiznova</td>
+            <td></td>
+            <td>FPC1 케이블</td>
+            <td>5v</td>
+            <td>포고핀</td>
+            <td>양산. (m004-a로 대체 예정)</td>
+        </tr>
+        <tr>
+            <td>24</td>
+            <td>m004-a</td>
+            <td>wiznova</td>
+            <td></td>
+            <td>FPC1 케이블</td>
+            <td>RS232</td>
+            <td>포고핀</td>
+            <td>양산</td>
+        </tr>
+        <tr>
+            <td>25</td>
+            <td></td>
+            <td>mh1902t</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>26</td>
+            <td>m005</td>
+            <td>wiznova</td>
+            <td></td>
+            <td>FPC2 케이블</td>
+            <td>RS232</td>
+            <td>핀헤더</td>
+            <td>승인대기</td>
+        </tr>
+        <tr>
+            <td>27</td>
+            <td></td>
+            <td>mh1902t</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>28</td>
+            <td>m006</td>
+            <td>wiznova</td>
+            <td></td>
+            <td>FPC2 케이블</td>
+            <td>RS232</td>
+            <td>핀헤더</td>
+            <td>양산</td>
+        </tr>
+        <tr>
+            <td>29</td>
+            <td></td>
+            <td>mh1902t</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
 </body>
+
 </html>
