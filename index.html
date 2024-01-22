@@ -10,7 +10,8 @@
             border-collapse: collapse;
             width: 100%;
             max-width: fit-content;
-            min-height:fit-content; /* 각 행의 최소 높이 설정 */
+            min-height: fit-content;
+            /* 각 행의 최소 높이 설정 */
         }
 
         th,
@@ -18,6 +19,11 @@
             border: 1px solid #dddddd;
             text-align: left;
             padding: 8px;
+        }
+
+        td img {
+            width: 30%;
+            height: auto;
         }
 
         th {
@@ -76,7 +82,7 @@
         <tr>
             <th>순번</th>
             <th>타입</th>
-            <th>디코더</th>
+            <th colspan="2">디코더</th>
             <th>마이컴</th>
             <th>헤드연결</th>
             <th>uart level</th>
@@ -85,8 +91,12 @@
         </tr>
         <tr>
             <td>1</td>
-            <td>c</td>
+            <td rowspan='3'>c</td>
             <td>magtek</td>
+            <td>
+                <img src="./img/lpu237/c/magtek/c.e.a_top.JPG" alt="magtek c type top">
+                <img src="./img/lpu237/c/magtek/c.e.a_bot.JPG" alt="magtek c type top">
+            </td>
             <td>LPU1343</td>
             <td>일반 케이블</td>
             <td>무</td>
@@ -95,28 +105,24 @@
         </tr>
         <tr>
             <td>2</td>
-            <td></td>
-            <td>wiznova</td>
+            <!--<td></td>-->
+            <td>mag&wiz</td>
+            <td>
+                <img src="./img/lpu237/c/mag_wiz/c.g.a_top.JPG" alt="magtek & wiznova c type top">
+                <img src="./img/lpu237/c/mag_wiz/c.g.a_bot.JPG" alt="magtek & wiznova c type top">
+            </td>
             <td></td>
             <td>일반 케이블</td>
             <td>무</td>
             <td>일반커넥터</td>
-            <td>단종</td>
+            <td></td>
         </tr>
         <tr>
             <td>3</td>
-            <td></td>
-            <td>mag&wiz</td>
-            <td></td>
-            <td>일반 케이블</td>
-            <td>무</td>
-            <td>일반커넥터</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td></td>
+            <!--<td></td>-->
             <td>mh1902t</td>
+            <td>
+            </td>
             <td>MH1902T</td>
             <td>일반 케이블</td>
             <td>무</td>
@@ -124,9 +130,27 @@
             <td>개발</td>
         </tr>
         <tr>
-            <td>5</td>
-            <td>d</td>
+            <td>4</td>
+            <td rowspan='3'>d</td>
             <td>magtek</td>
+            <td>
+                <img src="./img/lpu237/d/magtek/d.f.a_top.JPG" alt="magtek d type top">
+                <img src="./img/lpu237/d/magtek/d.f.a_bot.JPG" alt="magtek d type top">
+            </td>
+            <td></td>
+            <td>일반 케이블</td>
+            <td>5v</td>
+            <td>일반커넥터</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <!--<td></td>-->
+            <td>mag&wiz</td>
+            <td>
+                <img src="./img/lpu237/d/mag_wiz/d.g.a_top.JPG" alt="magtek & wiznova d type top">
+                <img src="./img/lpu237/d/mag_wiz/d.g.a_bot.JPG" alt="magtek & wiznova d type top">
+            </td>
             <td></td>
             <td>일반 케이블</td>
             <td>5v</td>
@@ -135,18 +159,24 @@
         </tr>
         <tr>
             <td>6</td>
-            <td></td>
-            <td>wiznova</td>
-            <td></td>
+            <!--<td></td>-->
+            <td>mh1902t</td>
+            <td>
+            </td>
+            <td>MH1902T</td>
             <td>일반 케이블</td>
             <td>5v</td>
             <td>일반커넥터</td>
-            <td>단종</td>
+            <td>개발</td>
         </tr>
         <tr>
             <td>7</td>
-            <td></td>
-            <td>mag&wiz</td>
+            <td rowspan='3'>e</td>
+            <td>magtek</td>
+            <td>
+                <img src="./img/lpu237/e/magtek/e.f.a_top.JPG" alt="magtek e type top">
+                <img src="./img/lpu237/e/magtek/e.f.a_bot.JPG" alt="magtek e type top">
+            </td>
             <td></td>
             <td>일반 케이블</td>
             <td>5v</td>
@@ -155,98 +185,88 @@
         </tr>
         <tr>
             <td>8</td>
+            <!--<td></td>-->
+            <td>mag&wiz</td>
+            <td>
+                <img src="./img/lpu237/e/mag_wiz/e.g.a_top.JPG" alt="magtek & wiznova e type top">
+                <img src="./img/lpu237/e/mag_wiz/e.g.a_bot.JPG" alt="magtek & wiznova e type top">
+            </td>
             <td></td>
-            <td>mh1902t</td>
-            <td>MH1902T</td>
             <td>일반 케이블</td>
             <td>5v</td>
             <td>일반커넥터</td>
-            <td>개발</td>
+            <td></td>
         </tr>
         <tr>
             <td>9</td>
-            <td>e</td>
-            <td>magtek</td>
-            <td></td>
+            <!--<td></td>-->
+            <td>mh1902t</td>
+            <td>
+            </td>
+            <td>MH1902T</td>
             <td>일반 케이블</td>
             <td>5v</td>
             <td>일반커넥터</td>
-            <td></td>
+            <td>개발</td>
         </tr>
         <tr>
             <td>10</td>
-            <td></td>
-            <td>wiznova</td>
-            <td></td>
-            <td>일반 케이블</td>
+            <td rowspan="2">f00n</td>
+            <td>무</td>
+            <td>
+                <img src="./img/lpu237/f00n/f00n.d.a_top.JPG" alt="usb & uart i-button">
+                <img src="./img/lpu237/f00n/f00n.d.a_bot.JPG" alt="usb & uart i-button">
+            </td>
+            <td>LPU1343</td>
+            <td>무</td>
             <td>5v</td>
             <td>일반커넥터</td>
-            <td>단종</td>
+            <td>pp 후 생산된 적 없음</td>
         </tr>
         <tr>
             <td>11</td>
+            <!--<td></td>-->
+            <td>무</td>
+            <td>
+            </td>
+            <td>MH1902T</td>
             <td></td>
-            <td>mag&wiz</td>
             <td></td>
-            <td>일반 케이블</td>
-            <td>5v</td>
             <td>일반커넥터</td>
-            <td></td>
+            <td>개발</td>
         </tr>
         <tr>
             <td>12</td>
-            <td></td>
-            <td>mh1902t</td>
-            <td>MH1902T</td>
-            <td>일반 케이블</td>
-            <td>5v</td>
+            <td rowspan="2">f00nu</td>
+            <td>무</td>
+            <td>
+                <img src="./img/lpu237/f00nu/f00nu.b.a_top.JPG" alt="usb i-button">
+                <img src="./img/lpu237/f00nu/f00nu.b.a_bot.JPG" alt="usb i-button">
+            </td>
+            <td>LPU1343</td>
+            <td>무</td>
+            <td>무</td>
             <td>일반커넥터</td>
-            <td>개발</td>
+            <td>pp 후 생산된 적 없음</td>
         </tr>
         <tr>
             <td>13</td>
-            <td>f00n</td>
+            <!--<td></td>-->
             <td>무</td>
-            <td>LPU1343</td>
-            <td>무</td>
-            <td>5v</td>
+            <td>
+            </td>
+            <td>MH1902T</td>
+            <td></td>
+            <td></td>
             <td>일반커넥터</td>
-            <td>pp 후 생산된 적 없음</td>
+            <td>개발</td>
         </tr>
         <tr>
             <td>14</td>
-            <td></td>
-            <td>무</td>
-            <td>MH1902T</td>
-            <td></td>
-            <td></td>
-            <td>일반커넥터</td>
-            <td>개발</td>
-        </tr>
-        <tr>
-            <td>15</td>
-            <td>f00nu</td>
-            <td>무</td>
-            <td>LPU1343</td>
-            <td>무</td>
-            <td>무</td>
-            <td>일반커넥터</td>
-            <td>pp 후 생산된 적 없음</td>
-        </tr>
-        <tr>
-            <td>16</td>
-            <td></td>
-            <td>무</td>
-            <td>MH1902T</td>
-            <td></td>
-            <td></td>
-            <td>일반커넥터</td>
-            <td>개발</td>
-        </tr>
-        <tr>
-            <td>17</td>
-            <td>m001-d</td>
+            <td rowspan="3">m001-d</td>
             <td>magtek</td>
+            <td>
+            </td>
             <td></td>
             <td>직접납땜</td>
             <td>무</td>
@@ -254,9 +274,12 @@
             <td>단종</td>
         </tr>
         <tr>
-            <td>18</td>
-            <td></td>
+            <td>15</td>
+            <!--<td></td>-->
             <td>wiznova</td>
+            <td>
+                <img src="./img/lpu237/m001-d/m001.d_top.jpg">
+            </td>
             <td></td>
             <td>직접납땜</td>
             <td>무</td>
@@ -264,9 +287,11 @@
             <td>양산</td>
         </tr>
         <tr>
-            <td>19</td>
-            <td></td>
+            <td>16</td>
+            <!--<td></td>-->
             <td>mh1902t</td>
+            <td>
+            </td>
             <td></td>
             <td></td>
             <td></td>
@@ -274,9 +299,12 @@
             <td></td>
         </tr>
         <tr>
-            <td>20</td>
-            <td>m001-e-fpc</td>
+            <td>17</td>
+            <td rowspan="2">m001-e-fpc</td>
             <td>wiznova</td>
+            <td>
+                <img src="./img/lpu237/m001-e-fpc/m001.e.fpc_top.jpg">
+            </td>
             <td></td>
             <td>직접납땜</td>
             <td>무</td>
@@ -284,9 +312,11 @@
             <td>양산</td>
         </tr>
         <tr>
-            <td>21</td>
-            <td></td>
+            <td>18</td>
+            <!--<td></td>-->
             <td>mh1902t</td>
+            <td>
+            </td>
             <td></td>
             <td></td>
             <td></td>
@@ -294,9 +324,13 @@
             <td></td>
         </tr>
         <tr>
-            <td>22</td>
+            <td>19</td>
             <td>m003-b</td>
             <td>magtek</td>
+            <td>
+                <img src="./img/lpu237/m003-b/m003.b.top.jpg">
+                <img src="./img/lpu237/m003-b/m003.b.bot.jpg">
+            </td>
             <td></td>
             <td>FPC1 케이블</td>
             <td>5v</td>
@@ -304,9 +338,13 @@
             <td>pp 후 생산된 적 없음</td>
         </tr>
         <tr>
-            <td>23</td>
+            <td>20</td>
             <td>m003-d</td>
             <td>wiznova</td>
+            <td>
+                <img src="./img/lpu237/m003-d/m003.d_top.jpg">
+                <img src="./img/lpu237/m003-d/m003.d_bot.jpg">
+            </td>
             <td></td>
             <td>FPC1 케이블</td>
             <td>5v</td>
@@ -314,9 +352,13 @@
             <td>양산. (m004-a로 대체 예정)</td>
         </tr>
         <tr>
-            <td>24</td>
-            <td>m004-a</td>
+            <td>21</td>
+            <td rowspan="2">m004-a</td>
             <td>wiznova</td>
+            <td>
+                <img src="./img/lpu237/m004-a/m004.a_top.jpg">
+                <img src="./img/lpu237/m004-a/m004.a_bot.jpg">
+            </td>
             <td></td>
             <td>FPC1 케이블</td>
             <td>RS232</td>
@@ -324,9 +366,11 @@
             <td>양산</td>
         </tr>
         <tr>
-            <td>25</td>
-            <td></td>
+            <td>22</td>
+            <!--<td></td>-->
             <td>mh1902t</td>
+            <td>
+            </td>
             <td></td>
             <td></td>
             <td></td>
@@ -334,9 +378,13 @@
             <td></td>
         </tr>
         <tr>
-            <td>26</td>
-            <td>m005</td>
+            <td>23</td>
+            <td rowspan="2">m005</td>
             <td>wiznova</td>
+            <td>
+                <img src="./img/lpu237/m005/m005_top.jpg">
+                <img src="./img/lpu237/m005/m005_bot.jpg">
+            </td>
             <td></td>
             <td>FPC2 케이블</td>
             <td>RS232</td>
@@ -344,9 +392,11 @@
             <td>승인대기</td>
         </tr>
         <tr>
-            <td>27</td>
-            <td></td>
+            <td>24</td>
+            <!--<td></td>-->
             <td>mh1902t</td>
+            <td>
+            </td>
             <td></td>
             <td></td>
             <td></td>
@@ -354,9 +404,13 @@
             <td></td>
         </tr>
         <tr>
-            <td>28</td>
-            <td>m006</td>
+            <td>25</td>
+            <td rowspan="2">m006</td>
             <td>wiznova</td>
+            <td>
+                <img src="./img/lpu237/m006/m006_top.jpg">
+                <img src="./img/lpu237/m006/m006_bot.jpg">
+            </td>
             <td></td>
             <td>FPC2 케이블</td>
             <td>RS232</td>
@@ -364,9 +418,11 @@
             <td>양산</td>
         </tr>
         <tr>
-            <td>29</td>
-            <td></td>
+            <td>26</td>
+            <!--<td></td>-->
             <td>mh1902t</td>
+            <td>
+            </td>
             <td></td>
             <td></td>
             <td></td>
