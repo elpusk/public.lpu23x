@@ -1,0 +1,233 @@
+{
+    "head":["타입","디코더","마이컴","헤드연결","uart level","usb 연결", "상태"],
+    "body":
+    [
+        {
+            "type":"c",
+            "decoder":"magtek",
+            "mycom":"LPC1343",
+            "head_connection":"일반 케이블",
+            "uart_level":"",
+            "usb_connection":"일반 커넥터",
+            "status":""
+        },
+        {
+            "type":"c",
+            "decoder":"mag&wiz",
+            "mycom":"LPC1343",
+            "head_connection":"일반 케이블",
+            "uart_level":"",
+            "usb_connection":"일반 커넥터",
+            "status":""
+        },
+        {
+            "type":"c",
+            "decoder":"mh1902t",
+            "mycom":"MH1902T",
+            "head_connection":"일반 케이블",
+            "uart_level":"",
+            "usb_connection":"일반 커넥터",
+            "status":"개발(fw:ok,circuit:no)"
+        },
+
+        {
+            "type":"d",
+            "decoder":"magtek",
+            "mycom":"LPC1343",
+            "head_connection":"일반 케이블",
+            "uart_level":"5v",
+            "usb_connection":"일반 커넥터",
+            "status":""
+        },
+        {
+            "type":"d",
+            "decoder":"mag&wiz",
+            "mycom":"LPC1343",
+            "head_connection":"일반 케이블",
+            "uart_level":"5v",
+            "usb_connection":"일반 커넥터",
+            "status":""
+        },
+        {
+            "type":"d",
+            "decoder":"mh1902t",
+            "mycom":"MH1902T",
+            "head_connection":"일반 케이블",
+            "uart_level":"5v",
+            "usb_connection":"일반 커넥터",
+            "status":"개발"
+        },
+
+        {
+            "type":"e",
+            "decoder":"magtek",
+            "mycom":"LPC1343",
+            "head_connection":"일반 케이블",
+            "uart_level":"5v",
+            "usb_connection":"일반 커넥터",
+            "status":""
+        },
+        {
+            "type":"e",
+            "decoder":"mag&wiz",
+            "mycom":"LPC1343",
+            "head_connection":"일반 케이블",
+            "uart_level":"5v",
+            "usb_connection":"일반 커넥터",
+            "status":""
+        },
+        {
+            "type":"e",
+            "decoder":"mh1902t",
+            "mycom":"MH1902T",
+            "head_connection":"일반 케이블",
+            "uart_level":"5v",
+            "usb_connection":"일반 커넥터",
+            "status":"개발"
+        },
+
+        {
+            "type":"f00n",
+            "decoder":"NONE",
+            "mycom":"LPC1343",
+            "head_connection":"",
+            "uart_level":"5v",
+            "usb_connection":"일반 커넥터",
+            "status":"pp 후 생산된 적 없음"
+        },
+        {
+            "type":"f00n",
+            "decoder":"NONE",
+            "mycom":"mh1902t",
+            "head_connection":"",
+            "uart_level":"5v",
+            "usb_connection":"일반 커넥터",
+            "status":"개발"
+        },
+
+
+        {
+            "type":"f00nu",
+            "decoder":"NONE",
+            "mycom":"LPC1343",
+            "head_connection":"",
+            "uart_level":"",
+            "usb_connection":"일반 커넥터",
+            "status":"pp 후 생산된 적 없음"
+        },
+        {
+            "type":"f00nu",
+            "decoder":"NONE",
+            "mycom":"mh1902t",
+            "head_connection":"",
+            "uart_level":"",
+            "usb_connection":"일반 커넥터",
+            "status":"개발"
+        },
+
+
+        {
+            "type":"m001-d",
+            "decoder":"magtek",
+            "mycom":"LPC1343",
+            "head_connection":"직접납땜",
+            "uart_level":"",
+            "usb_connection":"일반 커넥터",
+            "status":"단종"
+        },
+        {
+            "type":"m001-d",
+            "decoder":"wiznova",
+            "mycom":"LPC1343",
+            "head_connection":"직접납땜",
+            "uart_level":"",
+            "usb_connection":"일반 커넥터",
+            "status":"양산"
+        },
+        {
+            "type":"m001-d",
+            "decoder":"mh1902t",
+            "mycom":"MH1902T",
+            "head_connection":"직접납땜",
+            "uart_level":"",
+            "usb_connection":"일반 커넥터",
+            "status":"lpu237-mh001-d"
+        },
+
+
+        {
+            "type":"m001-e-fpc",
+            "decoder":"wiznova",
+            "mycom":"LPC1343",
+            "head_connection":"직접납땜",
+            "uart_level":"",
+            "usb_connection":"FPC커넥터",
+            "status":"양산"
+        },
+        {
+            "type":"m001-e-fpc",
+            "decoder":"mh1902t",
+            "mycom":"MH1902T",
+            "head_connection":"직접납땜",
+            "uart_level":"",
+            "usb_connection":"FPC커넥터",
+            "status":"lpu237-mh001-e"
+        },
+
+
+        {
+            "type":"m003-b",
+            "decoder":"magtek",
+            "mycom":"LPC1343",
+            "head_connection":"FPC1 케이블",
+            "uart_level":"5v",
+            "usb_connection":"포고핀",
+            "status":"pp 후 생산된 적 없음"
+        },
+
+
+        {
+            "type":"m003-d",
+            "decoder":"wiznova",
+            "mycom":"LPC1343",
+            "head_connection":"FPC1 케이블",
+            "uart_level":"5v",
+            "usb_connection":"포고핀",
+            "status":"양산. (m004-a로 대체 예정)"
+        },
+
+
+        {
+            "type":"m004-a",
+            "decoder":"wiznova",
+            "mycom":"LPC1343",
+            "head_connection":"FPC1 케이블",
+            "uart_level":"RS232",
+            "usb_connection":"포고핀",
+            "status":"양산."
+        },
+
+
+        {
+            "type":"m005",
+            "decoder":"wiznova",
+            "mycom":"LPC1343",
+            "head_connection":"FPC2 케이블",
+            "uart_level":"RS232",
+            "usb_connection":"핀헤더",
+            "status":"승인대기."
+        },
+
+
+        {
+            "type":"m006",
+            "decoder":"wiznova",
+            "mycom":"LPC1343",
+            "head_connection":"FPC2 케이블",
+            "uart_level":"RS232",
+            "usb_connection":"핀헤더",
+            "status":"양산."
+        }
+
+    ]
+}

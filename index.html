@@ -37,7 +37,7 @@
         }
 
         tr:nth-child(odd) {
-            background-color: #e6e6e6;
+            background-color: hsla(0, 0%, 88%, 0.329);
             /* 짝수 행 배경색을 진한 회색으로 설정 */
         }
 
@@ -78,7 +78,18 @@
         software page </a>
     <br>
     <br>
-    <table>
+    <table id="dataTable">
+        <thead  id="dataHead">
+        </thead>
+        <tbody id="dataBody"></tbody>
+    </table>
+
+    <script src="./js/table.js"></script>
+    <script>
+        init();
+    </script>
+    <br>
+    <table id="id_table_device">
         <tr>
             <th>순번</th>
             <th>타입</th>
@@ -291,6 +302,7 @@
             <!--<td></td>-->
             <td>mh1902t</td>
             <td>
+                lpu237-mh001-d
             </td>
             <td></td>
             <td></td>
@@ -316,6 +328,7 @@
             <!--<td></td>-->
             <td>mh1902t</td>
             <td>
+                lpu237-mh001-e
             </td>
             <td></td>
             <td></td>
