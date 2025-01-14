@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISO Data Generator</title>
+    <script src="./genbit.js"></script>
+</head>
+<body>
+    <h1>ISO Data Generator</h1>
+    <label for="encoderBox">Enter Encoder Data (HEX):</label>
+    <textarea id="encoderBox" rows="5" cols="50" placeholder="FFFFCAFB9B6A90FACF18C6DABBD6318FB9B6A90FACF3DEF7BDEF047FFFFF"></textarea>
+    <br><br>
+    <label for="ascBox">Enter ASCII Data(except STX, ETX and LRC):</label>
+    <textarea id="ascBox" rows="5" cols="50" placeholder="1234567890333458899912345678901111111"></textarea>
+    <br><br>
+    <button id="runButton", onclick="genbit()">Generate ISO Data</button>
+    <div id="output"></div>
+    
+</body>
+</html>
