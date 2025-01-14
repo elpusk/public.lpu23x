@@ -11,7 +11,22 @@
 
     <a href="./v5.21.0.7.zip"> test Firmware(with password)  </a>
     <br><br>
+    <h2> Testing Procedure </h2>
 
+    1. Download the test firmware and use the LPU237 Ganymede MSR with the mapper for forced installation.<br>
+    2. Set the MSR interface to USB keyboard mode.<br>
+    3. Run Notepad on Windows 10 and swipe the test card.<br>
+    4. If there are no reading errors, the MMD1100 encoder output for all tracks containing data will be displayed in hexadecimal, regardless of the mapper settings.<br>  
+    &nbsp&nbsp- Before displaying each track value, two "enter" keystrokes are output.<br>
+    &nbsp&nbsp- After displaying each track value, one "enter" keystroke is output.<br>
+    5. After the MMD1100 encoder output, the normal operating mode displays card data according to the mapper settings.<br>
+    6. Copy the MMD1100 encoder output value for the card track you want to analyze and paste it into the **Encoder Data** input field.<br>
+    7. Copy the ASCII string of the card track you want to analyze and paste it into the **ASCII Data** input field.<br>
+    8. Click the **Generate ISO Data** button.<br>
+    9. When a prompt appears, enter `6` for track 1 analysis or `4` for track 2 or track 3 analysis.<br>
+    10. In the displayed results, if numbers are shown under **The positions:**, it indicates that the MMD1100 encoder output contains a pattern representing the card's ASCII string.<br>
+
+    <br><br>
     <label for="encoderBox">Enter Encoder Data (HEX):</label>
     <textarea id="encoderBox" rows="5" cols="50" placeholder="FFFFCAFB9B6A90FACF18C6DABBD6318FB9B6A90FACF3DEF7BDEF047FFFFF"></textarea>
     <br><br>
