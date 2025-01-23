@@ -59,3 +59,20 @@ def iso2_generate_2d_bin_array_card_data(s_ascii_data):
     result.append(ar_lrc)
 
     return result
+
+'''
+ar_1d_binary format - inversion order(STX),inversion order(D[0]), ... inversion order(D[N-1]), inversion order(ETX), inversion order(LRC)
+'''
+def check_iso1_forward(ar_1d_binary):
+    b_need_more_bits = True
+    b_error_parity = False
+    b_lrc_error = False
+    n_the_number_of_chars_except_stx_etx_lrc = 0
+    #
+    
+    if len(ar_1d_binary) < CONST_INT_ISO2_SIZE_BIT:
+        return (b_need_more_bits,b_error_parity,b_lrc_error,n_the_number_of_chars_except_stx_etx_lrc)
+    #
+
+
+    return (b_need_more_bits,b_error_parity,b_lrc_error,n_the_number_of_chars_except_stx_etx_lrc)

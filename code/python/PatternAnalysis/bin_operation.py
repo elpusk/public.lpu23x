@@ -1,3 +1,5 @@
+import pandas as pd
+
 # binary arrary operations module
 
 from itertools import product
@@ -140,4 +142,44 @@ def bin_is_empty_2d_binary_array(ar_2d):
         #
     # end for
     return b_empty
+#
+
+def bin_get_2d_found_pattern(array_2d_bin, pattern):
+    found_2d_bin = []
+    found_index = bin_find_pattern_in_2d_array(array_2d_bin,pattern)
+    if bin_is_empty_2d_binary_array(found_index):
+        return found_2d_bin
+    #
+    for i in range(len(found_index)):
+        if len(found_index[i]) > 0:
+            ar_1d = array_2d_bin[i]
+            #
+            for index in found_index[i]:
+                 ar_found = ar_1d[index:]
+                 found_2d_bin.append(ar_found)
+    #
+    return found_2d_bin
+
+def bin_print_2d( binary_2d_array, s_empty_cell="X" ):
+    df = pd.DataFrame(binary_2d_array)
+    df = df.map(lambda x: x if pd.notna(x) else s_empty_cell)
+    df = df.map(lambda x: int(x) if (x is not s_empty_cell) and (x == 1.0 or x == 0.0) else x)
+    print(df)
+
+
+def bin_check_parity(array_bin, n_start_pos, n_bit_size, b_odd_parity):
+    # 주어진 범위의 부분 배열 추출
+    sub_array = array_bin[n_start_pos:n_start_pos + n_bit_size]
+    
+    # 부분 배열의 모든 비트의 합 계산
+    bit_sum = sum(sub_array)
+    
+    # 패리티 계산
+    if b_odd_parity:
+        parity_bit = bit_sum % 2  # 홀수 패리티
+        return parity_bit == 1
+    else:
+        parity_bit = bit_sum % 2  # 짝수 패리티
+        return parity_bit == 0
+    #
 #
