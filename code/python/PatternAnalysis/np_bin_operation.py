@@ -1,64 +1,74 @@
+import numpy as np
 import pandas as pd
 
-# binary arrary operations module
+# binary arrary operations module by numpy module
 
 from itertools import product
 
-# 
-'''
-@brief 
-    invert all bits of the given binary array.
-@param
-    array_bin - 1d binary array
-@return
-    binary array
-'''
+# invert all bits of the given binary array.
 def bin_invert_bits(array_bin):
     """Invert the bits of the given value based on n_bits."""
-    return [1 - bit for bit in array_bin]
+    not_array = 1 - array_bin
+    return not_array
 
-'''
-invert the bits order of the given binary array.
-'''
+# invert the order of the given binary array.
 def bin_invert_order(array_bin):
     """Invert the order of the given value based on n_bits."""
-    return array_bin[::-1]
+    return np.flip(array_bin)
 
 # invert the order of the given binary array.
 # invert all bits of the given binary array.
 def bin_invert_order_and_bits(array_bin):
     """Invert the order of the given value based on n_bits."""
-    return [1 - bit for bit in array_bin][::-1]
+    return np.flip(1 - array_bin)
 
 # find pattern in the given binary array.
-# return the index of the pattern in the array.
+# return the indexs of the pattern in the array.
 def bin_find_pattern_in_1d_array(array_bin, pattern):
+    # 입력을 NumPy 배열로 변환
+    array_bin = np.asarray(array_bin)
+    pattern = np.asarray(pattern)
+    
+    # 배열과 패턴의 길이를 가져옴
     pattern_length = len(pattern)
     array_length = len(array_bin)
-    result = []
-    #
-    if(pattern_length > array_length):
-        return result
-    if(pattern_length == 0):
-        return result
-    if(array_length == 0):
-        return result
-    #
-    for i in range(array_length - pattern_length + 1):
-        if array_bin[i:i + pattern_length] == pattern:
-            result.append(i)
-    #
-    return result
+    
+    # 패턴이 배열보다 길거나 둘 중 하나가 비어 있으면 빈 리스트 반환
+    if pattern_length > array_length or pattern_length == 0 or array_length == 0:
+        return []
+
+    # 슬라이딩 윈도우를 사용해 배열에서 패턴 매칭
+    sliding_windows = np.lib.stride_tricks.sliding_window_view(array_bin, pattern_length)
+    matching_indices = np.where((sliding_windows == pattern).all(axis=1))[0]
+    
+    return matching_indices.tolist()
 #
 
+# 이차원 배열의 각 요소에서 pattern 를 모두 찾아, 2차원 배열 inndex 를 반환
 def bin_find_pattern_in_2d_array(array_2d_bin, pattern):
+    # 입력 배열과 패턴을 NumPy 배열로 변환
+    array_2d_bin = np.asarray(array_2d_bin)
+    pattern = np.asarray(pattern)
+    
+    # 패턴 길이와 배열의 기본 정보
+    pattern_length = len(pattern)
+    if pattern_length == 0 or array_2d_bin.size == 0:
+        return []  # 빈 배열 처리
+    
+    # 결과 저장 리스트
     found = []
-    if len(array_2d_bin)==0:
-        return found
-    for ar in array_2d_bin:
-        pos = bin_find_pattern_in_1d_array(ar,pattern)
-        found.append(pos)
-    #
+    
+    # 각 행에 대해 슬라이딩 윈도우를 적용해 패턴 검색
+    for row in array_2d_bin:
+        if len(row) < pattern_length:
+            found.append([])  # 패턴이 행보다 길면 빈 리스트 추가
+            continue
+        
+        # 슬라이딩 윈도우를 사용해 각 행에서 패턴 검색
+        sliding_windows = np.lib.stride_tricks.sliding_window_view(row, pattern_length)
+        matching_indices = np.where((sliding_windows == pattern).all(axis=1))[0]
+        found.append(matching_indices.tolist())  # 결과를 리스트로 저장
+
     return found
 #
 
