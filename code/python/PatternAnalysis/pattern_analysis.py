@@ -45,7 +45,7 @@ def main():
 
     # 모든 조합에서 CONST_ARRAY_BIN_ISO2_SS_INV_ORDER 가 있는 지 검사. 
     found_index = bin_op.bin_find_pattern_in_2d_array(ar_2d_etx_all,iso.CONST_ARRAY_BIN_ISO2_SS_INV_ORDER)
-    print(found_index)
+    # print(found_index)
     if bin_op.bin_is_empty_2d_binary_array(found_index) is True:
         # not found here
         # print("ETX-D[36] : inv_order(stx) : empty")
@@ -58,20 +58,86 @@ def main():
     # bin_op.bin_print_2d(found_2d_etx_d36,"-")
 
     print("Inv(STX-11010)가 ETX,D[36] 에 걸쳐 나오는 경우. ")
-    ar_2d_etx_d36_35_normal = []
+    
 
-    for etx_d36_1d in found_2d_etx_d36:
-        # 가능한 모든 D[35] 조합의 앞에 검출된 ETX, D[36]를 추가.
-        ar_2d_etx_d36_35 = bin_op.bin_concate_1D_bin_to_2d_bin(etx_d36_1d,ar_2d_all_except_ETX,True)
+    print("forward 읽기로 검사하여, 모든 조건을 에러 없이 만족하거나, 에러가 나는 조합은 제거")
+
+    b_continue = False
+
+    ad_bin_2d_in = found_2d_etx_d36
+    ad_bin_2d_out = []
+    #n_last_index = -1 # 35~0
+    n_last_index = 31 # 35~34
+
+    for d in range(35,n_last_index-1,-1):
+        # D[35] ~ D[0] session
+        print(f"===== D[{d}] session")
+        #
+        ad_bin_2d_out = [] # reset out array
+        # 
+        for _1d in ad_bin_2d_in:
+            _2d = bin_op.bin_concate_1D_bin_to_2d_bin(_1d,ar_2d_all_except_ETX,True)
+            # print(_1d)
+            # bin_op.bin_print_2d(_2d)
+            b_continue, normal_2d = iso.check_iso2_forward_with_2d(_2d)
+            if not b_continue:
+                print(f"STX, ETX, LRC 모두 만족하고, 데이터의 길이가 0보다 큰 조합 발견.따라서 명제는 거짓")
+                return
+            #
+            ad_bin_2d_out = bin_op.bin_concate_2d_bin_to_2d_bin(ad_bin_2d_out,normal_2d) 
+        # end for _1d
+        # bin_op.bin_print_2d(ad_bin_2d_out,"-")
+        print( f"ETX, D[36] ~ D[{d}] 까지 명제를 참으로 유지하는 조합의 수는 ",len(ad_bin_2d_out))
+
+        ad_bin_2d_in = ad_bin_2d_out
+
+    #end for range(35,-1,-1)
+
+    print("가능한 모든 조합에서 위 명제에 반하는 경우가 없으므로, 명제는 참.")
+
+    '''
+    ## D[35] session
+    # 가능한 모든 D[35] 조합의 앞에 검출된 ETX, D[36]를 추가.
+    ar_2d_etx_d36_35_normal = []
+    #
+    for _1d in found_2d_etx_d36:
+        ar_2d_etx_d36_35 = bin_op.bin_concate_1D_bin_to_2d_bin(_1d,ar_2d_all_except_ETX,True)
         # print(etx_d36_1d)
         # bin_op.bin_print_2d(ar_2d_etx_d36_35)
-        for ar_1d_etx_d36_35 in ar_2d_etx_d36_35:
-            if bin_op.bin_check_parity(ar_1d_etx_d36_35,iso.CONST_INT_ISO2_SIZE_BIT,iso.CONST_INT_ISO2_SIZE_BIT,b_odd_parity=True):
-                ar_2d_etx_d36_35_normal.append(ar_1d_etx_d36_35)
+        b_continue, normal_2d = iso.check_iso2_forward_with_2d(ar_2d_etx_d36_35)
+        if not b_continue:
+            print(f"STX, ETX, LRC 모두 만족하고, 데이터의 길이가 0보다 큰 조합 발견.따라서 명제는 거짓")
+            return
         #
+        ar_2d_etx_d36_35_normal = bin_op.bin_concate_2d_bin_to_2d_bin(ar_2d_etx_d36_35_normal,normal_2d) 
     #
-    bin_op.bin_print_2d(ar_2d_etx_d36_35_normal,"-")
+    # bin_op.bin_print_2d(ar_2d_etx_d36_35_normal,"-")
+    print( "ETX, D[36], D[35] 까지 명제를 참으로 유지하는 조합의 수는 ",len(ar_2d_etx_d36_35_normal))
+    
+    ## D[34] session
+    # 가능한 모든 D[34] 조합의 앞에 검출된 ETX, D[36], D[35]를 추가.
+    ar_2d_etx_d36_35_34_normal = []
+    #
+    for _1d in ar_2d_etx_d36_35_normal:
+        ar_2d_etx_d36_35_34 = bin_op.bin_concate_1D_bin_to_2d_bin(_1d,ar_2d_all_except_ETX,True)
+        #
+        b_continue, normal_2d = iso.check_iso2_forward_with_2d(ar_2d_etx_d36_35_34)
+        if not b_continue:
+            print(f"STX, ETX, LRC 모두 만족하고, 데이터의 길이가 0보다 큰 조합 발견.따라서 명제는 거짓")
+            return
+        #
+        ar_2d_etx_d36_35_34_normal = bin_op.bin_concate_2d_bin_to_2d_bin(ar_2d_etx_d36_35_34_normal,normal_2d) 
+    # end for
+    # print(ar_2d_etx_d36_35_34_normal)
+    # bin_op.bin_print_2d(ar_2d_etx_d36_35_34_normal,"-")
+    print( "ETX, D[36], D[35], D[34] 까지 명제를 참으로 유지하는 조합의 수는 ",len(ar_2d_etx_d36_35_34_normal))
+    '''
 
+    '''
+    arbin = bin_op.bin_str_to_binary_array("1101") 
+    b_need_more_bits, b_error_parity, b_lrc_error, n_the_number_of_chars_except_stx_etx_lrc = iso.check_iso1_forward(arbin)
+    print("need_more_bits=", b_need_more_bits, "error_parity=",b_error_parity, "lrc_error=",b_lrc_error, "data size=",n_the_number_of_chars_except_stx_etx_lrc)
+    '''
 
     '''
 

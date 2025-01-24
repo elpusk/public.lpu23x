@@ -93,8 +93,21 @@ def bin_add_parity(bin_in, b_parity_msb, b_parity_odd):
 def bin_get_1d_from_2d(bin_2d):
     bin_1d = [bit for row in bin_2d for bit in row]
     return bin_1d
-     
-def bin_byte_to_binary_array(c,n_start=0, n_bit_size=8):
+
+def bin_get_2d_from_1d(bin_1d, n_bit_size,n_start = 0):
+    bin_2d = []
+    #
+    if len(bin_1d)==0:
+        return bin_2d
+    if n_bit_size <=0:
+        return bin_2d
+    #
+    for i in range(n_start, len(bin_1d), n_bit_size):
+        bin_2d.append(bin_1d[i:i + n_bit_size])
+    return bin_2d
+#
+
+def bin_get_binary_array_from_byte(c,n_start=0, n_bit_size=8):
     # 바이트 값을 이진 문자열로 변환
     if n_start < 0 or n_start > 7:
         return []
@@ -106,6 +119,39 @@ def bin_byte_to_binary_array(c,n_start=0, n_bit_size=8):
     binary_array = [int(bit) for bit in binary_string]
     sliced_ar = binary_array[n_start:n_start + n_bit_size]
     return sliced_ar
+
+def bin_get_bytearray_from_binary_array(ar_1d_bin, n_start=0, n_bit_size=8, b_msb_first=True):
+    """
+    주어진 이진 배열에서 지정된 크기만큼 잘라 바이트 배열로 변환합니다.
+
+    :param ar_1d_bin: 1차원 이진 배열 (리스트)
+    :param n_start: 시작 인덱스 (기본값: 0)
+    :param n_bit_size: 잘라낼 비트 크기 (1~8)
+    :param b_msb_first: MSB 우선 여부 (True면 MSB 우선, False면 리틀엔디언)
+    :return: 변환된 bytearray
+    """
+    byte_array = bytearray()
+    n = len(ar_1d_bin)
+
+    # n_start부터 n_bit_size씩 처리
+    for i in range(n_start, n, n_bit_size):
+        # 잘라낼 비트 구간
+        bits = ar_1d_bin[i:i + n_bit_size]
+
+        # 비트가 부족하면 0으로 채움
+        if len(bits) < n_bit_size:
+            bits.extend([0] * (n_bit_size - len(bits)))
+
+        # MSB 우선인지 리틀엔디언인지 확인
+        if not b_msb_first:
+            bits = bits[::-1]  # 리틀엔디언일 경우 비트 순서 반전
+
+        # 비트를 문자열로 변환 후 정수로 변환
+        byte_value = int("".join(map(str, bits)), 2)
+        byte_array.append(byte_value)
+
+    return byte_array
+#
 
 def bin_concate_1D_bin_to_2d_bin(bin_1d,bin_2d,b_concate_prefix):
     if len(bin_1d) == 0:
@@ -122,6 +168,20 @@ def bin_concate_1D_bin_to_2d_bin(bin_1d,bin_2d,b_concate_prefix):
             result.append(bin_2d[i]+bin_1d)
     #
     return result
+
+def bin_concate_2d_bin_to_2d_bin(ar_2d1, ar_2d2):
+    combined_array = []
+
+    # 첫 번째 배열의 각 행을 결합된 배열에 추가
+    for row in ar_2d1:
+        combined_array.append(row)
+    
+    # 두 번째 배열의 각 행을 결합된 배열에 추가
+    for row in ar_2d2:
+        combined_array.append(row)
+
+    return combined_array
+#
 
 def bin_str_to_binary_array(s):
     return [int(char) for char in s if char in '01']
@@ -160,6 +220,7 @@ def bin_get_2d_found_pattern(array_2d_bin, pattern):
     #
     return found_2d_bin
 
+
 def bin_print_2d( binary_2d_array, s_empty_cell="X" ):
     df = pd.DataFrame(binary_2d_array)
     df = df.map(lambda x: x if pd.notna(x) else s_empty_cell)
@@ -183,3 +244,4 @@ def bin_check_parity(array_bin, n_start_pos, n_bit_size, b_odd_parity):
         return parity_bit == 0
     #
 #
+
