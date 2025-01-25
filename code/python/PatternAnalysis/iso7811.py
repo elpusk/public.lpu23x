@@ -25,22 +25,23 @@ CONST_ARRAY_BIN_2D_TABLE_ISO2 = [[1, 0, 0, 0, 0], [0, 0, 0, 0, 1], [0, 0, 0, 1, 
 
 '''
 @brief 
-    invert all bits of the given binary array.
+    패리티 비트를 제외한 4 비트가 생성 가능한 모든 조합의 이차원 이진 배열 생성.
 @param
-    array_bin - 1d binary array
+    none
 @return
-    binary array
+    생성된 2^4 by 4 이차원 배열
 '''
 def iso2_generate_char_table_without_parity():
     return bin_op.bin_generate_all_combination(CONST_INT_ISO2_SIZE_BIT - 1)
 
 '''
 @brief 
-    invert all bits of the given binary array.
+    패리티 비트를 제외한 4 비트가 생성 가능한 모든 조합의 이차원 이진 배열 생성하고,
+    생성된 2차원 이진 배열의 각 행의 시작에 각 행의 odd parity 비트 값을 추가. 
 @param
-    array_bin - 1d binary array
+    none
 @return
-    binary array
+    생성된 2^4 by 5 이차원 배열
 '''
 def iso2_generate_char_table_with_parity():
     char_table = iso2_generate_char_table_without_parity()
@@ -48,11 +49,12 @@ def iso2_generate_char_table_with_parity():
 
 '''
 @brief 
-    invert all bits of the given binary array.
+    아스키 코드로 구성된 문자열 s_ascii_data 의 각 문자에 대응하는 ISO7811-2 track2 코드값을 1차원 이진배열로 하는 이차원 이진배열 생성.
+    STX, ETC, LRC 는 자동으로 추가 된다.  
 @param
-    array_bin - 1d binary array
+    s_ascii_data - 아스키 코드로 구성된 문자열
 @return
-    binary array
+    생성된 이차원 이진배열
 '''
 def iso2_generate_2d_bin_array_card_data(s_ascii_data):
     result = []
@@ -89,19 +91,17 @@ def iso2_generate_2d_bin_array_card_data(s_ascii_data):
 
 '''
 @brief 
-    invert all bits of the given binary array.
+    ar_1d_binary 로 주어지는 1차원 이진 배열이 ISO7811-2 track 2를 forward 로 읽었을 때, 얻는 값이라고 가정하고, 규격에 맞는지 검사.
+    ar_1d_binary format - inversion order(STX),inversion order(D[0]), ... inversion order(D[N-1]), inversion order(ETX), inversion order(LRC)
 @param
-    array_bin - 1d binary array
+    ar_1d_binary - ISO7811-2 track 2를 forward 로 읽었을 때, 얻는 1차원 이진 배열
 @return
-    binary array
-'''
-'''
-ar_1d_binary format - inversion order(STX),inversion order(D[0]), ... inversion order(D[N-1]), inversion order(ETX), inversion order(LRC)
-return
-Not detected STX : need_more_bits= True error_parity= False lrc_error= False data size= 0
-dual detectd STX : need_more_bits= False error_parity= False lrc_error= False data size= 0
-LRC is parity error : need_more_bits= False error_parity= True lrc_error= True data size>=0
-Over lenght error : need_more_bits= False error_parity= False lrc_error= False data size>CONST_INT_ISO2_MAX_SIZE_STR
+    need_more_bits - True 면, ar_1d_binary 로 주어진 값까지에서는 에러가 발견되지 않았거나, STX 가 발견되지 않았거나, 데이터의 마지막을 구성하는 LRC 값 까지 받지 못함.
+                   - False, LRC 까지 주어진 데이터 상에 에러가 발생 또는 리살   
+    Not detected STX : need_more_bits= True error_parity= False lrc_error= False data size= 0
+    dual detectd STX : need_more_bits= False error_parity= False lrc_error= False data size= 0
+    LRC is parity error : need_more_bits= False error_parity= True lrc_error= True data size>=0
+    Over lenght error : need_more_bits= False error_parity= False lrc_error= False data size>CONST_INT_ISO2_MAX_SIZE_STR
 '''
 def check_iso2_forward(ar_1d_binary):
     b_need_more_bits = True
