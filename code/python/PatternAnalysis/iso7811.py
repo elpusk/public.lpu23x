@@ -22,13 +22,38 @@ CONST_STR_VAILD_ISO2_CHAR = "0123456789:;<=>?"
 CONST_STR_VAILD_ISO2_CHAR_EXCEPT_SS_ES = "0123456789:<=>"
 
 CONST_ARRAY_BIN_2D_TABLE_ISO2 = [[1, 0, 0, 0, 0], [0, 0, 0, 0, 1], [0, 0, 0, 1, 0], [1, 0, 0, 1, 1], [0, 0, 1, 0, 0], [1, 0, 1, 0, 1], [1, 0, 1, 1, 0], [0, 0, 1, 1, 1], [0, 1, 0, 0, 0], [1, 1, 0, 0, 1], [1, 1, 0, 1, 0], [0, 1, 0, 1, 1], [1, 1, 1, 0, 0], [0, 1, 1, 0, 1], [0, 1, 1, 1, 0], [1, 1, 1, 1, 1]]
+
+'''
+@brief 
+    invert all bits of the given binary array.
+@param
+    array_bin - 1d binary array
+@return
+    binary array
+'''
 def iso2_generate_char_table_without_parity():
     return bin_op.bin_generate_all_combination(CONST_INT_ISO2_SIZE_BIT - 1)
 
+'''
+@brief 
+    invert all bits of the given binary array.
+@param
+    array_bin - 1d binary array
+@return
+    binary array
+'''
 def iso2_generate_char_table_with_parity():
     char_table = iso2_generate_char_table_without_parity()
     return [bin_op.bin_add_parity(char, b_parity_msb=True, b_parity_odd=True) for char in char_table]
 
+'''
+@brief 
+    invert all bits of the given binary array.
+@param
+    array_bin - 1d binary array
+@return
+    binary array
+'''
 def iso2_generate_2d_bin_array_card_data(s_ascii_data):
     result = []
     if len(s_ascii_data) <=0:
@@ -61,6 +86,15 @@ def iso2_generate_2d_bin_array_card_data(s_ascii_data):
 
     return result
 
+
+'''
+@brief 
+    invert all bits of the given binary array.
+@param
+    array_bin - 1d binary array
+@return
+    binary array
+'''
 '''
 ar_1d_binary format - inversion order(STX),inversion order(D[0]), ... inversion order(D[N-1]), inversion order(ETX), inversion order(LRC)
 return
@@ -181,6 +215,14 @@ def check_iso2_forward(ar_1d_binary):
     return (b_need_more_bits,b_error_parity,b_lrc_error,n_the_number_of_chars_except_stx_etx_lrc)
 #
 
+'''
+@brief 
+    invert all bits of the given binary array.
+@param
+    array_bin - 1d binary array
+@return
+    binary array
+'''
 def check_iso2_forward_with_2d(ar_bin_2d):
     ar_2d_normal = []
     b_continue = True

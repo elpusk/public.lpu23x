@@ -14,24 +14,41 @@ from itertools import product
     binary array
 '''
 def bin_invert_bits(array_bin):
-    """Invert the bits of the given value based on n_bits."""
     return [1 - bit for bit in array_bin]
 
 '''
-invert the bits order of the given binary array.
+@brief 
+    invert the bits order of the given binary array.
+@param
+    array_bin - 1d binary array
+@return
+    binary array
 '''
 def bin_invert_order(array_bin):
-    """Invert the order of the given value based on n_bits."""
     return array_bin[::-1]
 
-# invert the order of the given binary array.
-# invert all bits of the given binary array.
+
+'''
+@brief 
+    invert the order of the given binary array.
+    invert all bits of the given binary array.
+@param
+    array_bin - 1d binary array
+@return
+    binary array
+'''
 def bin_invert_order_and_bits(array_bin):
-    """Invert the order of the given value based on n_bits."""
     return [1 - bit for bit in array_bin][::-1]
 
-# find pattern in the given binary array.
-# return the index of the pattern in the array.
+'''
+@brief 
+    find pattern in the given binary array.
+@param
+    array_bin - 1d binary array
+    pattern - 1d binary array. the founding pattern.
+@return
+    binary array. - the indexs array of the found patterns
+'''
 def bin_find_pattern_in_1d_array(array_bin, pattern):
     pattern_length = len(pattern)
     array_length = len(array_bin)
@@ -51,6 +68,15 @@ def bin_find_pattern_in_1d_array(array_bin, pattern):
     return result
 #
 
+'''
+@brief 
+    find pattern in the given 2d binary array.
+@param
+    array_2d_bin - 2d binary array
+    pattern - 1d binary array. the founding pattern.
+@return
+    2d binary array. - the 2d indexs array of the found patterns
+'''
 def bin_find_pattern_in_2d_array(array_2d_bin, pattern):
     found = []
     if len(array_2d_bin)==0:
@@ -62,8 +88,14 @@ def bin_find_pattern_in_2d_array(array_2d_bin, pattern):
     return found
 #
 
-# 정수 비트의 개수 n_bit 가 주어지면, n_bit 크기의 모든 가능한 조합의 이진수 배열의 배열인 2차원 이진수 배열을 return
-# n_bit 이 0 이하이면, 빈 배열을 return
+'''
+@brief 
+    정수 비트의 개수 n_bit 가 주어지면, n_bit 크기의 모든 가능한 조합의 이진수 배열의 배열인 2차원 이진수 배열을 return
+@param
+    n_bit - 비트의 개수. n_bit 이 0 이하이면, 빈 배열을 return
+@return
+    2d - binary array. 
+'''
 def bin_generate_all_combination(n_bit):
     if n_bit <= 0:
         return []
@@ -71,7 +103,15 @@ def bin_generate_all_combination(n_bit):
     combinations = list(product([0, 1], repeat=n_bit))
     return [list(comb) for comb in combinations]
 
-
+'''
+@brief 
+    1d binary array 에 대한 even or odd parity 계산.
+@param
+    bits - 패리티 계산 할 1d binary array.
+    b_parity_odd - True 이면 odd parity 계산, False  이면 event parity 계산
+@return
+    -1 - bits 의 길이는 0, 1 또는 0 계산된 패리티 비트 값.
+'''
 def bin_calculate_parity(bits, b_parity_odd):
     if len(bits) == 0:
         return -1
@@ -84,8 +124,13 @@ def bin_calculate_parity(bits, b_parity_odd):
 #
 
 '''
-bin_in : 1차원 또는 2차원 이진수 배열 (0 또는 1로 이루어진 배열)
-b_parity_msb : True 이면, MSB 에 parity bit 추가, False 이면, LSB 에 parity bit 추가
+@brief 
+    1차원 또는 2차원 이진수 배열에 parity 비트를 추가.
+@param
+    bin_in : parity bit를 추가 할, 1차원 또는 2차원 이진수 배열 (0 또는 1로 이루어진 배열)
+    b_parity_msb : True - parity bit 를 MSB 에 추가.  False - parity bit 를 LSB 에 추가.
+@return
+    parity 비트가 추가된 1차원 또는 2차원 이진수 배열
 '''
 def bin_add_parity(bin_in, b_parity_msb, b_parity_odd):
     if len(bin_in) == 0:
@@ -100,10 +145,28 @@ def bin_add_parity(bin_in, b_parity_msb, b_parity_odd):
         parity_bit = bin_calculate_parity(bin_in, b_parity_odd)
         return [parity_bit] + bin_in if b_parity_msb else bin_in + [parity_bit]
 
+'''
+@brief 
+    2차원 이진수 배열 각 행의 끝을 다음해의 시작에 연결한 1차원 이진배열 생성. 
+@param
+    bin_2d - 2차원 이진수 배열
+@return
+    binary array - 생성된 1차원 이진배열 
+'''
 def bin_get_1d_from_2d(bin_2d):
     bin_1d = [bit for row in bin_2d for bit in row]
     return bin_1d
 
+'''
+@brief 
+    1차원 이진배열을 n_start index 부터,n_bit_size 개수 만튼 잘라 2차원 이진배열 생성.
+@param
+    bin_1d - 1d binary array
+    n_bit_size - 생성될 2 차원 이진배열 각 행의 열 개수.
+    n_start - bin_1d 에서 작업을 시작 할 요소의 인덱스 값.
+@return
+    생성된 2 차원 이진배열
+'''
 def bin_get_2d_from_1d(bin_1d, n_bit_size,n_start = 0):
     bin_2d = []
     #
@@ -117,6 +180,16 @@ def bin_get_2d_from_1d(bin_1d, n_bit_size,n_start = 0):
     return bin_2d
 #
 
+'''
+@brief 
+    1 바이트 값에 해당하는 이진 배열을 얻음.
+@param
+    c - 1바이트 값.
+    n_start - c 에서 비트를 얻을 시작 위치(0~7)
+    n_bit_size - c 에서 얻을 비트의 수(1~8)
+@return
+    1차원 이진배열
+'''
 def bin_get_binary_array_from_byte(c,n_start=0, n_bit_size=8):
     # 바이트 값을 이진 문자열로 변환
     if n_start < 0 or n_start > 7:
@@ -130,16 +203,18 @@ def bin_get_binary_array_from_byte(c,n_start=0, n_bit_size=8):
     sliced_ar = binary_array[n_start:n_start + n_bit_size]
     return sliced_ar
 
-def bin_get_bytearray_from_binary_array(ar_1d_bin, n_start=0, n_bit_size=8, b_msb_first=True):
-    """
+'''
+@brief 
     주어진 이진 배열에서 지정된 크기만큼 잘라 바이트 배열로 변환합니다.
-
-    :param ar_1d_bin: 1차원 이진 배열 (리스트)
-    :param n_start: 시작 인덱스 (기본값: 0)
-    :param n_bit_size: 잘라낼 비트 크기 (1~8)
-    :param b_msb_first: MSB 우선 여부 (True면 MSB 우선, False면 리틀엔디언)
-    :return: 변환된 bytearray
-    """
+@param
+    ar_1d_bin - 1차원 이진배열
+    n_start - ar_1d_bin에서 사용 할 요소의 시작 인데스(기본값: 0)
+    n_bit_size - 1개의 바이트로 변환 할 ar_1d_bin의 요소의 수.(1~8)
+    b_msb_first -  MSB 우선 여부 (True면 MSB 우선, False면 리틀엔디언)
+@return
+    bytearray - 변환한 bytearray
+'''
+def bin_get_bytearray_from_binary_array(ar_1d_bin, n_start=0, n_bit_size=8, b_msb_first=True):
     byte_array = bytearray()
     n = len(ar_1d_bin)
 
@@ -163,6 +238,16 @@ def bin_get_bytearray_from_binary_array(ar_1d_bin, n_start=0, n_bit_size=8, b_ms
     return byte_array
 #
 
+'''
+@brief 
+    bin_1d 의 1차원 배열을 이차원 배열의 모든 1차원 배열 요수의 앞 또는 뒤애 추가.
+@param
+    bin_1d - 추가하는 1d binary array
+    bin_2d - 추가되는 2d binary array
+    b_concate_prefix - True 면 앞에 추가, False 이면 뒤에 추가.
+@return
+    추가된 이차원 배열.
+'''
 def bin_concate_1D_bin_to_2d_bin(bin_1d,bin_2d,b_concate_prefix):
     if len(bin_1d) == 0:
         return bin_2d
@@ -179,6 +264,16 @@ def bin_concate_1D_bin_to_2d_bin(bin_1d,bin_2d,b_concate_prefix):
     #
     return result
 
+'''
+@brief 
+    ar_2d1 로 주어진 2차원 배열의 마지막 행 다음에 ar_2d2 의 모든 행을 추가.
+    열의 개수를 마추기 위한 패딩은 없다.
+@param
+    ar_2d1 - 시작 이차원 배열
+    ar_2d2 - ar_2d1 에 추가될 이차원 배열.
+@return
+    연결된 2차원 배열.
+'''
 def bin_concate_2d_bin_to_2d_bin(ar_2d1, ar_2d2):
     combined_array = []
 
@@ -193,13 +288,38 @@ def bin_concate_2d_bin_to_2d_bin(ar_2d1, ar_2d2):
     return combined_array
 #
 
+'''
+@brief 
+    문자 0, 1 로만 구성된 문자열을 1차원 이진배열.
+@param
+    s - 문자 0, 1 로만 구성된 문자열
+@return
+    생성된  1차원 이진배열.
+'''
 def bin_str_to_binary_array(s):
     return [int(char) for char in s if char in '01']
 
+'''
+@brief 
+    주어진 이차원 배열의 행 중, 1차원 배열로 주어진 패턴과 동일한 행을 삭제한 이차원 배열 얻기
+@param
+    bin_2d - 2d binary array
+    pattern_1d - 패턴의 1차원 배열 
+@return
+    bin_2d 에서 pattern_1d 가 삭제된 이차원 배열.
+'''
 def bin_remove_matching_rows(bin_2d, pattern_1d):
     return [row for row in bin_2d if row != pattern_1d]
 
 
+'''
+@brief 
+    주어진 이차원 배열가 없거나, 이차원 배열의 모든 요소인 1차원 배열의 길이가 0 이면 Ture.
+@param
+    ar_2d - 2d binary array
+@return
+    True or False 검사 결과
+'''
 def bin_is_empty_2d_binary_array(ar_2d):
     if len(ar_2d) == 0:
         return True
@@ -214,6 +334,15 @@ def bin_is_empty_2d_binary_array(ar_2d):
     return b_empty
 #
 
+'''
+@brief 
+    array_2d_bin 의 이차원 배열의 각 행에서, pattern 로 주아지는 1차원 배열과 일치하는 배열 시작 인데스를 모두 찾아 이 차원 index 배열을 만듬. 
+@param
+    array_2d_bin - pattern 를 찾을 2차원 배열.
+    pattern - 찾을 패턴의 2차원 배열
+@return
+    찾은 시작 인데스로 구성된 이차원 배열
+'''
 def bin_get_2d_found_pattern(array_2d_bin, pattern):
     found_2d_bin = []
     found_index = bin_find_pattern_in_2d_array(array_2d_bin,pattern)
@@ -230,7 +359,15 @@ def bin_get_2d_found_pattern(array_2d_bin, pattern):
     #
     return found_2d_bin
 
-
+'''
+@brief 
+    주어진 이차원 이진 배열을 0, 1 , 값이 얻는 부분은 s_empty_cell로 주어진 pands 라이브러리를 이용해 문자 화면에 프린트.
+@param
+    binary_2d_array - 화면에 표시할 이차원 이진배열.
+    s_empty_cell - 값이 없을 때 표시 할 문자열.(기본값 "X")
+@return
+    None
+'''
 def bin_print_2d( binary_2d_array, s_empty_cell="X" ):
     df = pd.DataFrame(binary_2d_array)
     df = df.map(lambda x: x if pd.notna(x) else s_empty_cell)
@@ -238,6 +375,18 @@ def bin_print_2d( binary_2d_array, s_empty_cell="X" ):
     print(df)
 
 
+'''
+@brief 
+    array_bin 1차원 이진 배열에서 n_start_pos 시작 인덱스 부터,  n_bit_size 개수 만큼의 인자로 1차원 이진 배열을 생성하고,
+    이 생성된 1차원 이진 배열의 parity 비트를 검사 
+@param
+    array_bin - 1d binary array
+    n_start_pos - array_bin 의 시작 인데스
+    n_bit_size - 생성할 1차원 이진 배열의 크기
+    b_odd_parity - True 면 odd parity 검사, False 면 even parity 검사
+@return
+    True - parity 검사 이상없음, False - parity 에러.
+'''
 def bin_check_parity(array_bin, n_start_pos, n_bit_size, b_odd_parity):
     # 주어진 범위의 부분 배열 추출
     sub_array = array_bin[n_start_pos:n_start_pos + n_bit_size]
