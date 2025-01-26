@@ -1,13 +1,10 @@
 
-import bin_operation as bin_op
-import iso7811 as iso
+import np_bin_operation as bin_op
+import np_iso7811 as iso
 import pandas as pd
 import numpy as np
-import time
-import numba
 
 #
-@jit(nopython=True)
 def main():
     print("ETX  = inv(ETX) 이므로, ETX 를 inv(ETX) 로 인식하는 경우")
     print("LRC = inv(STX) 이고 D[N-1] = 00100 이다")
@@ -25,11 +22,13 @@ def main():
 
     # 모든 조합의 뒤에 ISO2 ETX (CONST_ARRAY_BIN_ISO2_ES)를 추가.
     ar_2d_all_lrc_etx = bin_op.bin_concate_1D_bin_to_2d_bin(iso.CONST_ARRAY_BIN_ISO2_ES,ar_2d_all_lrc,False)
-    #print(pd.DataFrame(ar_2d_all_lrc_etx))
+    # bin_op.bin_print_2d(ar_2d_all_lrc_etx)
 
     # 모든 조합에서 CONST_ARRAY_BIN_ISO2_SS_INV_ORDER 가 있는 지 검사. 
     found_index = bin_op.bin_find_pattern_in_2d_array(ar_2d_all_lrc_etx,iso.CONST_ARRAY_BIN_ISO2_SS_INV_ORDER)
-    #print(found)
+    bin_op.bin_print_2d(found_index)
+    return
+
     if bin_op.bin_is_empty_2d_binary_array(found_index) is not True:
         # print("LRC-ETX : inv_order(stx) : not empty")
         print("Inv(STX-11010)는 LRC, ETX 에 걸쳐 나올 수 있다.")
@@ -68,16 +67,15 @@ def main():
     b_continue = False
 
     ad_bin_2d_in = found_2d_etx_d36
-    ad_bin_2d_out = []
+    ad_bin_2d_out = np.array([])
     #n_last_index = -1 # 35~0
     n_last_index = 31 # 35~34
 
     for d in range(35,n_last_index-1,-1):
         # D[35] ~ D[0] session
-        start_time = time.time()
         print(f"===== D[{d}] session")
         #
-        ad_bin_2d_out = [] # reset out array
+        ad_bin_2d_out = np.array([]) # reset out array
         # 
         for _1d in ad_bin_2d_in:
             _2d = bin_op.bin_concate_1D_bin_to_2d_bin(_1d,ar_2d_all_except_ETX,True)
@@ -85,8 +83,6 @@ def main():
             # bin_op.bin_print_2d(_2d)
             b_continue, normal_2d = iso.check_iso2_forward_with_2d(_2d)
             if not b_continue:
-                end_time = time.time()
-                print("Elapsed Time : ",end_time-start_time)
                 print(f"STX, ETX, LRC 모두 만족하고, 데이터의 길이가 0보다 큰 조합 발견.따라서 명제는 거짓")
                 return
             #
@@ -96,12 +92,11 @@ def main():
         print( f"ETX, D[36] ~ D[{d}] 까지 명제를 참으로 유지하는 조합의 수는 ",len(ad_bin_2d_out))
 
         ad_bin_2d_in = ad_bin_2d_out
-        end_time = time.time()
-        print("Elapsed Time : ",end_time-start_time)
 
     #end for range(35,-1,-1)
 
     print("가능한 모든 조합에서 위 명제에 반하는 경우가 없으므로, 명제는 참.")
+
 #
 
 if __name__ == "__main__":
