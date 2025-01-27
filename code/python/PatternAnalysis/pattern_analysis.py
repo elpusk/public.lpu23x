@@ -7,7 +7,7 @@ import time
 import numba
 
 #
-@jit(nopython=True)
+# @jit(nopython=True)
 def main():
     print("ETX  = inv(ETX) 이므로, ETX 를 inv(ETX) 로 인식하는 경우")
     print("LRC = inv(STX) 이고 D[N-1] = 00100 이다")
