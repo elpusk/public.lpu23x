@@ -9,11 +9,11 @@ import itertools
 # 
 '''
 @brief 
-    invert all bits of the given binary array.
+    PyArrow 1차원 배열의 모든 값을 반전, (0->1 또는 0->1).
 @param
-    array_bin - 1d binary array
+    array_bin - PyArrow 1차원 배열
 @return
-    binary array
+    반전된 PyArrow 1차원 배열
 '''
 def bin_invert_bits(array: pa.array) -> pa.array:
     # PyArrow 배열을 NumPy 배열로 변환
@@ -27,11 +27,11 @@ def bin_invert_bits(array: pa.array) -> pa.array:
 
 '''
 @brief 
-    invert the bits order of the given binary array.
+    PyArrow 1차원 배열의 모든 값의 순서를 역전 시킨다.
 @param
-    array_bin - 1d binary array
+    array_bin - PyArrow 1차원 배열
 @return
-    binary array
+    순서가 역전된 PyArrow 1차원 배열
 '''
 def bin_invert_order(array: pa.Array) -> pa.Array:
     # pyarrow.Array에서 데이터를 NumPy 배열로 변환
@@ -45,13 +45,13 @@ def bin_invert_order(array: pa.Array) -> pa.Array:
 
 
 '''
-@brief 
-    invert the order of the given binary array.
-    invert all bits of the given binary array.
+@brief
+    PyArrow 1차원 배열의 모든 값을 반전하고, (0->1 또는 0->1).
+    모든 값의 순서를 역전 시킨다.
 @param
-    array_bin - 1d binary array
+    array_bin - PyArrow 1차원 배열
 @return
-    binary array
+    값이 반전되고, 순서가 역전된 PyArrow 1차원 배열
 '''
 def bin_invert_order_and_bits(array: pa.array) -> pa.array:
     # PyArrow 배열을 NumPy 배열로 변환
@@ -68,14 +68,14 @@ def bin_invert_order_and_bits(array: pa.array) -> pa.array:
 
 '''
 @brief 
-    find pattern in the given binary array.
+    array_bin PyArrow 1차원 배열에서, pattern PyArrow 1차원 배열과 동일한 값들을 갖는 시작 인덱스의  PyArrow 1차원 배열를 반환.
 @param
-    array_bin - 1d binary array
-    pattern - 1d binary array. the founding pattern.
+    array_bin - PyArrow 1차원 배열
+    pattern - array_bin에서 찾는 PyArrow 1차원 배열
 @return
-    binary array. - the indexs array of the found patterns
+    찾은 패턴의 시작 인덱스의 PyArrow 1차원 배열
 '''
-def bin_find_pattern_in_1d_array(array_bin, pattern):
+def bin_find_pattern_in_1d_array(array_bin: pa.array, pattern: pa.array) -> pa.Array:
     """
     Find all starting indices of the `pattern` in `array_bin`.
 
@@ -118,7 +118,7 @@ def bin_find_pattern_in_1d_array(array_bin, pattern):
 @return
     2d binary array. - the 2d indexs array of the found patterns
 '''
-def bin_find_pattern_in_2d_array(array_2d_bin, pattern):
+def bin_find_pattern_in_2d_array(array_2d_bin: pa.ListArray, pattern: pa.array)->pa.ListArray:
     """
     Find all starting indices of the `pattern` in each row of a 2D pyarrow array.
 
@@ -155,7 +155,7 @@ def bin_find_pattern_in_2d_array(array_2d_bin, pattern):
 @return
     2d - binary array. 
 '''
-def bin_generate_all_combination(n_bit):
+def bin_generate_all_combination(n_bit)->pa.ListArray:
     """
     Generate all possible combinations of binary values for n_bit bits.
 
@@ -184,7 +184,7 @@ def bin_generate_all_combination(n_bit):
 @return
     -1 - bits 의 길이는 0, 1 또는 0 계산된 패리티 비트 값.
 '''
-def bin_calculate_parity(bits, b_parity_odd):
+def bin_calculate_parity(bits:pa.array, b_parity_odd):
     """
     Calculate the parity of a pyarrow 1D array.
 
@@ -196,9 +196,10 @@ def bin_calculate_parity(bits, b_parity_odd):
         int: 1 if the parity is odd (for odd parity) or needs to be 1 (for even parity),
              0 otherwise.
     """
+
     if not isinstance(bits, pa.Array):
         raise TypeError("bits must be a pyarrow Array.")
-    
+
     # Ensure the array only contains 0 and 1
     if not all(bit in [0, 1] for bit in bits.to_pylist()):
         raise ValueError("bits must only contain binary values (0 or 1).")
@@ -266,7 +267,7 @@ def bin_add_parity(bin_in, b_parity_msb, b_parity_odd):
 @return
     binary array - 생성된 pyarrow 1차원 배열 
 '''
-def bin_get_1d_from_2d(bin_2d):
+def bin_get_1d_from_2d(bin_2d:pa.ListArray)->pa.array:
     """
     Create a PyArrow 1D binary array by concatenating all rows of a 2D binary array.
 
@@ -295,7 +296,7 @@ def bin_get_1d_from_2d(bin_2d):
 @return
     생성된 PyArrow 2 차원 이진배열
 '''
-def bin_get_2d_from_1d(bin_1d, n_bit_size, n_start=0):
+def bin_get_2d_from_1d(bin_1d:pa.array, n_bit_size, n_start=0)->pa.ListArray:
     """
     Create a PyArrow 2D binary array by slicing a PyArrow 1D array.
 
@@ -342,7 +343,7 @@ def bin_get_2d_from_1d(bin_1d, n_bit_size, n_start=0):
 @return
     pyArrow 1차원 이진배열
 '''
-def bin_get_binary_array_from_byte(c, n_start=0, n_bit_size=8):
+def bin_get_binary_array_from_byte(c, n_start=0, n_bit_size=8)->pa.array:
     """
     Extract bits from a 1-byte value and return them as a PyArrow 1D binary array.
 
@@ -383,7 +384,7 @@ def bin_get_binary_array_from_byte(c, n_start=0, n_bit_size=8):
 @return
     bytearray - 변환한 bytearray
 '''
-def bin_get_bytearray_from_binary_array(ar_1d_bin, n_start=0, n_bit_size=8, b_msb_first=True):
+def bin_get_bytearray_from_binary_array(ar_1d_bin:pa.array, n_start=0, n_bit_size=8, b_msb_first=True)->bytearray:
     """
     Convert a PyArrow 1D binary array into a bytearray.
 
@@ -445,7 +446,7 @@ def bin_get_bytearray_from_binary_array(ar_1d_bin, n_start=0, n_bit_size=8, b_ms
 @return
     추가된 PyArrow 2차원 배열.
 '''
-def bin_concate_1D_bin_to_2d_bin(bin_1d, bin_2d, b_concate_prefix):
+def bin_concate_1D_bin_to_2d_bin(bin_1d:pa.array, bin_2d:pa.ListArray, b_concate_prefix)->pa.ListArray:
     """
     Concatenate a PyArrow 1D binary array to the front or back of each row in a PyArrow 2D binary array.
 
@@ -496,7 +497,7 @@ def bin_concate_1D_bin_to_2d_bin(bin_1d, bin_2d, b_concate_prefix):
 @return
     생성된 PyArrow 2차원 배열.
 '''
-def bin_concate_2d_bin_to_2d_bin(ar_2d1, ar_2d2):
+def bin_concate_2d_bin_to_2d_bin(ar_2d1:pa.ListArray, ar_2d2:pa.ListArray)->pa.ListArray:
     """
     Concatenate all rows of a PyArrow 2D array (ar_2d2) to the end of another PyArrow 2D array (ar_2d1).
 
@@ -531,7 +532,7 @@ def bin_concate_2d_bin_to_2d_bin(ar_2d1, ar_2d2):
 @return
     생성된  PyArrow 1차원 배열.
 '''
-def bin_str_to_binary_array(s):
+def bin_str_to_binary_array(s:str)->pa.array:
     """
     Convert a string composed of '0' and '1' characters into a PyArrow 1D binary array.
 
@@ -565,7 +566,7 @@ def bin_str_to_binary_array(s):
 @return
     bin_2d 에서 pattern_1d 가 삭제된 PyArrow 2차원 배열.
 '''
-def bin_remove_matching_rows(bin_2d, pattern_1d):
+def bin_remove_matching_rows(bin_2d:pa.ListArray, pattern_1d:pa.array)->pa.ListArray:
     """
     Remove rows from a PyArrow 2D array that match a given 1D pattern.
 
@@ -610,7 +611,7 @@ def bin_remove_matching_rows(bin_2d, pattern_1d):
 @return
     True or False 검사 결과
 '''
-def bin_is_empty_2d_binary_array(ar_2d):
+def bin_is_empty_2d_binary_array(ar_2d:pa.ListArray):
     """
     Check if a PyArrow 2D array is empty or all rows have zero length.
 
@@ -645,7 +646,7 @@ def bin_is_empty_2d_binary_array(ar_2d):
 @return
     찾은 시작 인데스로 구성된 PyArrow 2차원 배열
 '''
-def bin_get_2d_found_pattern(array_2d_bin, pattern):
+def bin_get_2d_found_pattern(array_2d_bin:pa.ListArray, pattern:pa.array)->pa.ListArray:
     """
     Find the start indices of a given pattern in each row of a PyArrow 2D binary array.
 
@@ -685,7 +686,7 @@ def bin_get_2d_found_pattern(array_2d_bin, pattern):
 @return
     None
 '''
-def bin_print_2d( binary_2d_array, s_empty_cell="X" ):
+def bin_print_2d( binary_2d_array:pa.ListArray, s_empty_cell="X" ):
     if not isinstance(binary_2d_array, pa.Table):
         raise TypeError("binary_2d_array must be a PyArrow 2D array (pa.Table).")
 
@@ -708,7 +709,7 @@ def bin_print_2d( binary_2d_array, s_empty_cell="X" ):
 @return
     True - parity 검사 이상없음, False - parity 에러.
 '''
-def bin_check_parity(array_bin, n_start_pos, n_bit_size, b_odd_parity):
+def bin_check_parity(array_bin:pa.array, n_start_pos, n_bit_size, b_odd_parity):
     """
     Check the parity of a subset of a PyArrow 1D array.
 
