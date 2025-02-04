@@ -69,8 +69,8 @@ def main():
 
     ad_bin_2d_in = found_2d_etx_d36
     ad_bin_2d_out = []
-    #n_last_index = -1 # 35~0
-    n_last_index = 31 # 35~34
+    n_last_index = -1 # 35~0
+    # n_last_index = 31 # 35~34
 
     for d in range(35,n_last_index-1,-1):
         # D[35] ~ D[0] session
